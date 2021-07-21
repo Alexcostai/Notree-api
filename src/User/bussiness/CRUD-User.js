@@ -21,7 +21,7 @@ export default function createCRUDUser(userDao, errorFactory, mailer, emailTextD
             }
             return user.id;
         },
-        recoverPassword: (id) => {
+        recoverPassword: async (id) => {
             const user = await userDao.getById(id);
             if (!user) {
                 throw errorFactory.userNotFoundError("User not found");
@@ -29,7 +29,7 @@ export default function createCRUDUser(userDao, errorFactory, mailer, emailTextD
             const email = await emailTextDao.getByCode("RECOVER_PASSWORD");
             mailer.send(email, user.email);
         },
-        resetPassword: (password, id) => {
+        resetPassword: async (password, id) => {
             const user = await userDao.getById(id);
             if (!user) {
                 throw errorFactory.userNotFoundError("User not found");
@@ -40,7 +40,7 @@ export default function createCRUDUser(userDao, errorFactory, mailer, emailTextD
                 throw errorFactory.userNotFoundError("User not found");
             }
         },
-        changePassword: ({ oldPassword, newPassword }, id) => {
+        changePassword: async ({ oldPassword, newPassword }, id) => {
             const user = await userDao.getById(id);
             if (!user) {
                 throw errorFactory.userNotFoundError("User not found");

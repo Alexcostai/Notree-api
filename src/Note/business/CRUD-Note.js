@@ -2,6 +2,7 @@ import { createNote } from '../models/Note.js';
 
 export default function createCRUDNote(noteDao, errorFactory) {
     return {
+        //pasar el id del usuario
         add: async (noteData) => {
             const note = createNote(noteData);
             await noteDao.add(note);
