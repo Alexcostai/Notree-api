@@ -2,16 +2,15 @@ import { createNote } from '../models/Note.js';
 
 export default function createCRUDNote(noteDao, errorFactory) {
     return {
-        //pasar el id del usuario
-        add: async (noteData) => {
-            const note = createNote(noteData);
+        add: async (noteData, userId) => {
+            const note = createNote({...noteData, userId});
             await noteDao.add(note);
         },
         remove: async (noteId) => {
             await noteDao.removeById(noteId);
         },
-        update: async (noteData) => {
-            const note = createNote(noteData);
+        update: async (noteData, userId) => {
+            const note = createNote({...noteData, userId});
             await noteDao.updateById(note);
         },
         getAll: async (userId) => {
