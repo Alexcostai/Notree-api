@@ -18,7 +18,7 @@ function createNoteDao(firebaseDb) {
     },
     getById: async (id) => {
       const doc = await firebaseDb.collection("notes").doc(id).get();
-      if(!doc.data()){
+      if (!doc.data()) {
         return null;
       }
       const date = doc.data().createdAt.toDate();
@@ -29,7 +29,7 @@ function createNoteDao(firebaseDb) {
     },
     updateById: async (note) => {
       await firebaseDb.collection("notes").doc(note.id).update(note);
-  },
+    },
   };
 }
 

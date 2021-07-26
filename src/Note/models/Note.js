@@ -3,10 +3,10 @@ import createErrorFactory from "../../shared/errors/ErrorFactory.js";
 /**
  * Note
  * userId: string
- * title: string
+ * title?: string
  * content?: string
  * createdAt: timestamp
- * color: string
+ * color?: string
  */
 
 const errorFactory = createErrorFactory();
@@ -14,9 +14,9 @@ const errorFactory = createErrorFactory();
 function createNote(data) {
   const note = {};
 
-  if(!data.userId){
+  if (!data.userId) {
     throw errorFactory.invalidDataError("There is no user id");
-  } else{
+  } else {
     note.userId = data.userId;
   }
 
@@ -36,7 +36,7 @@ function createNote(data) {
     note.color = data.color;
   }
 
-  if(data.id){
+  if (data.id) {
     note.id = data.id;
   }
 
