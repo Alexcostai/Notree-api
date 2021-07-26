@@ -45,4 +45,4 @@ function createNote(data) {
   return note;
 }
 
-export default createNote;
+export { createNote };
