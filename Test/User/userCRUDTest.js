@@ -1,5 +1,4 @@
 import createCRUDUserFactory from "../../src/User/bussiness/CRUD-UserFactory.js";
-import createUserDaoFactory from "../../src/User/persistence/userDaoFactory.js";
 
 // const userDao = createUserDaoFactory();
 const userCRUD = createCRUDUserFactory();

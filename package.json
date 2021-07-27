@@ -5,16 +5,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " node src/main.js"
+    "start": "nodemon src/Shared/main.js"
   },
   "keywords": [],
   "author": "Alex Costa",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "firebase": "^8.7.0",
     "jsonwebtoken": "^8.5.1",
-    "nodemailer": "^6.6.2"
+    "nodemailer": "^6.6.2",
+    "nodemon": "^2.0.12"
   }
 }

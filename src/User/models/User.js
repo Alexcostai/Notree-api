@@ -3,6 +3,14 @@ import createErrorFactory from "../../shared/errors/ErrorFactory.js";
 //Moldes
 import { createEmail } from "./Email.js";
 
+/**
+ * User
+ * email: string
+ * name: string
+ * lastName: string
+ * password: string
+ */
+
 const errorFactory = createErrorFactory();
 
 function createUser(data) {

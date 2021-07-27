@@ -9,6 +9,7 @@ function createUserRouter() {
 
   router.post("/password/recover", verifyToken, async (req, res, next) => {
     try {
+      console.log(req.userId);
       await CRUDUser.recoverPassword(req.userId);
       res.sendStatus(200);
     } catch (error) {
@@ -39,6 +40,9 @@ function createUserRouter() {
       error.type === "USER_NOT_FOUND_ERROR" ||
       error.type === "INVALID_DATA_ERROR"
     ) { res.status(404); }
+    else if (error.type === "NO_TOKEN_PROVIDED") {
+      res.status(403);
+    }
     else { res.status(500); }
     res.json({ message: error.message });
   });
