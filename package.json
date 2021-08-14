@@ -1,6 +1,9 @@
 {
   "type": "module",
   "name": "notree-api",
+  "engines": {
+    "node": "14.17.4"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
