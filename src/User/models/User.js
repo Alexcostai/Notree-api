@@ -5,10 +5,11 @@ import { createEmail } from "./Email.js";
 
 /**
  * User
- * email: string
  * name: string
  * lastName: string
+ * email: string
  * password: string
+ * avatar?: string --- IN COMMING...
  */
 
 const errorFactory = createErrorFactory();

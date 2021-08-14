@@ -35,12 +35,10 @@ async function signinTest() {
 
 async function recoverPasswordTest() {
   console.log("=================Test Recover Password=================");
-  const userId = '0ZcyKdOeIu7JEPTT3qCf';
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IklvZ1RLYnYxbWVwcEhqIiwiaWF0IjoxNjI3MzI5NTfp6YG0g19DNEc8W5D3N_n-M'
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRwRHVhTWlvZ1RLYnYxbWVwcEhqIiwiaWF0IjoxNjI3ODYxOTUzfQ.iaq3wtlyiYwZFqxC_53Z7ZsYGgyZwFaWV1-znRuAn4E'
   try {
     const res = await axios.post(
-      `${path}/user/password/recover`, 
-      userId,
+      `${path}/user/password/recover`,
       {headers:{'x-access-token': token}}
       );
     console.log(res.data);
@@ -51,12 +49,14 @@ async function recoverPasswordTest() {
 
 async function resetPasswordTest() {
   console.log("=================Test Reset Password=================");
-  const user = {
-    email: 'alexunio28@gmail.com',
-    password: 'jose123123'
-  }
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRwRHVhTWlvZ1RLYnYxbWVwcEhqIiwiaWF0IjoxNjI3ODYxOTUzfQ.iaq3wtlyiYwZFqxC_53Z7ZsYGgyZwFaWV1-znRuAn4E'
+  const newPassword = 'jose123123'
   try {
-    const res = await axios.post(`${path}/signin/`, user);
+    const res = await axios.post(
+      `${path}/user/password/reset`,
+      {newPassword},
+      {headers:{'x-access-token': token}}
+    );
     console.log(res.data);
   } catch (error) {
     console.log(error.message);
@@ -65,22 +65,37 @@ async function resetPasswordTest() {
 
 async function changePasswordTest() {
   console.log("=================Test Change Password=================");
-  const user = {
-    email: 'alexunio28@gmail.com',
-    password: 'jose123123'
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRwRHVhTWlvZ1RLYnYxbWVwcEhqIiwiaWF0IjoxNjI3ODYxOTUzfQ.iaq3wtlyiYwZFqxC_53Z7ZsYGgyZwFaWV1-znRuAn4E'
+  const newPassword = {
+    oldPassword: 'jose123123',
+    newPassword: 'PepePepon',
   }
   try {
-    const res = await axios.post(`${path}/signin/`, user);
+    const res = await axios.post(
+      `${path}/user/password/change`,
+      newPassword,
+      {headers:{'x-access-token': token}}
+    );
     console.log(res.data);
   } catch (error) {
     console.log(error.message);
   }
 }
 
-
+async function getProfile(){
+  console.log("=================Test User Profile=================");
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRwRHVhTWlvZ1RLYnYxbWVwcEhqIiwiaWF0IjoxNjI3ODYxOTUzfQ.iaq3wtlyiYwZFqxC_53Z7ZsYGgyZwFaWV1-znRuAn4E';
+  try {
+    const res = await axios.get(`${path}/user/profile`,{headers:{'x-access-token': token}});
+    console.log(res.data);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 // signupTest();
 // signinTest();
-recoverPasswordTest();
+// recoverPasswordTest();
 // resetPasswordTest();
 // changePasswordTest();
+getProfile();

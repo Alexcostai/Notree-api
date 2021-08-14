@@ -29,15 +29,15 @@ export default function createCRUDUser(userDao, errorFactory, mailer, emailTextD
             const email = await emailTextDao.getByCode("RECOVER_PASSWORD");
             mailer.send(email, user.email);
         },
-        resetPassword: async (password, id) => {
+        resetPassword: async ({newPassword}, id) => {
             const user = await userDao.getById(id);
             if (!user) {
                 throw errorFactory.userNotFoundError("User not found");
             }
-            user.password = password;
+            user.password = newPassword;
             const res = await userDao.update(user);
-            if(!res){
-                throw errorFactory.userNotFoundError("User not found");
+            if (!res) {
+                throw errorFactory.dataBaseError("Error reset password user");
             }
         },
         changePassword: async ({ oldPassword, newPassword }, id) => {
@@ -45,14 +45,22 @@ export default function createCRUDUser(userDao, errorFactory, mailer, emailTextD
             if (!user) {
                 throw errorFactory.userNotFoundError("User not found");
             }
-            if(user.password!==oldPassword){
+            if (user.password !== oldPassword) {
                 throw errorFactory.invalidDataError("Invalid password")
             }
             user.password = newPassword;
             const res = await userDao.update(user);
-            if(!res){
-                throw errorFactory.userNotFoundError("User not found");
+            if (!res) {
+                throw errorFactory.dataBaseError("Error change password user");
             }
         },
+        getProfile: async (id) => {
+            const user = await userDao.getById(id);
+            if (!user) {
+                throw errorFactory.userNotFoundError("User not found");
+            }
+            delete user.id;
+            return user;
+        }
     }
 }

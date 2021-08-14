@@ -26,10 +26,14 @@ function createNote(data) {
 
   if (data.title) {
     note.title = data.title;
+  } else {
+    note.title = '';
   }
 
   if (data.content) {
     note.content = data.content;
+  } else {
+    note.content = '';
   }
 
   if (data.color) {

@@ -35,6 +35,15 @@ function createUserRouter() {
     }
   });
 
+  router.get('/profile', verifyToken, async (req, res, next) => {
+    try {
+      const user = await CRUDUser.getProfile(req.userId);
+      res.status(200).json({ user });
+    } catch (error) {
+      next(error);
+    }
+  });
+
   router.use((error, req, res, next) => {
     if (
       error.type === "USER_NOT_FOUND_ERROR" ||
@@ -44,6 +53,7 @@ function createUserRouter() {
       res.status(403);
     }
     else { res.status(500); }
+    console.log(error);
     res.json({ message: error.message });
   });
 

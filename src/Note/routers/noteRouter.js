@@ -18,7 +18,7 @@ function createNoteRouter() {
 
   router.post("/", verifyToken, async (req, res, next) => {
     try {
-      await CRUDNote.add({ ...req.body, userId: req.userId })
+      await CRUDNote.add(req.body, req.userId);
       res.sendStatus(201);
     } catch (error) {
       next(error);
@@ -52,6 +52,7 @@ function createNoteRouter() {
       res.status(403);
     }
     else { res.status(500); }
+    console.log(error);
     res.json({ message: error.message });
   });
 

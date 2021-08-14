@@ -34,6 +34,7 @@ async function createServer(port) {
       })
       .once("listening", () => {
         server.port = server.address().port;
+        console.log("Server is loaded! :D");
         resolve(server);
       });
   });
