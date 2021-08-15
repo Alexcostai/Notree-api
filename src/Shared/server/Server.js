@@ -1,6 +1,6 @@
 import express from "express";
 import createUserRouter from "../../User/routers/userRouter.js";
-import createNoteRouter from "../../Note/routers/noteRouter.js";
+import createNoteRouter from "../../note/routers/noteRouter.js";
 import createSigninRouter from "../../User/routers/signinRouter.js";
 import createSignupRouter from "../../User/routers/singupRouter.js";
 

@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../../Shared/jwt/jwt.js";
+import { verifyToken } from "../../shared/jwt/jwt.js";
 import createCRUDUserFactory from '../bussiness/CRUD-UserFactory.js';
 
 const CRUDUser = createCRUDUserFactory();

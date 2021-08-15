@@ -8,7 +8,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/Shared/main.js"
+    "start": "nodemon src/shared/main.js"
   },
   "keywords": [],
   "author": "Alex Costa",
